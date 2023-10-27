@@ -1,8 +1,8 @@
 import Card from '../../components/Card/index'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { useState, useEffect } from 'react'
-import Loader from '../../utils/atoms'
+import { Loader } from '../../utils/style/atoms'
+import { useFetch, useTheme } from '../../utils/hooks/index'
 
 
 const FreelancesContainer = styled.div`
@@ -19,7 +19,8 @@ const CardsContainer = styled.div`
 
 const Title = styled.h1`
   margin-top: 60px;
-  text-align: center
+  text-align: center;
+  color: ${({theme}) => (theme === 'light' ? '#000000' : '#ffffff')}
 `
 
 const SubTitle = styled.h3`
@@ -35,28 +36,9 @@ const LoaderWrapper = styled.div`
 `
 
 function Freelances() {
-  const [freelancersList, setFreelancersList] = useState([])
-  const [isDataLoading, setIsDataLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    async function fetchFreelances() {
-      setIsDataLoading(true)
-      try {
-        const response = await fetch('http://localhost:8000/freelances')
-        const { freelancersList } = await response.json()
-        setFreelancersList(freelancersList)
-      }
-      catch(err) {
-        console.log(err)
-        setError(true)
-      }
-      finally {
-        setIsDataLoading(false)
-      }
-    }
-    fetchFreelances()
-  }, [])
+  const { data, isLoading, error } = useFetch('http://localhost:8000/freelances')
+  const freelancersList = data?.freelancersList
+  const { theme } = useTheme()
 
   if (error) {
     return <span>Oups, il y a eu un problème</span>
@@ -64,9 +46,14 @@ function Freelances() {
 
   return(
     <FreelancesContainer>
-      <Title>Trouvez votre prestataire</Title>
-      <SubTitle>Chez shiny nous réunissons les meilleurs profils pour vous.</SubTitle>
-      {isDataLoading ? (
+      <Title
+        theme={theme}
+      >
+        Trouvez votre prestataire</Title>
+      <SubTitle>
+        Chez shiny nous réunissons les meilleurs profils pour vous.
+      </SubTitle>
+      {isLoading ? (
         <LoaderWrapper>
           <Loader />
         </LoaderWrapper>

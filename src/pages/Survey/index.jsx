@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useContext } from 'react'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import Loader from '../../utils/atoms'
+import { Loader } from '../../utils/style/atoms'
 import { SurveyContext } from '../../utils/context/index'
 import { useFetch } from '../../utils/hooks/index'
 
