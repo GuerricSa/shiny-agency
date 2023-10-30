@@ -62,7 +62,7 @@ function formatFetchParams(answers) {
   }, '')
 }
 
-function formatJobList(title, listLength, index) {
+export function formatJobList(title, listLength, index) {
   if (index === listLength - 1) {
     return title
   }
