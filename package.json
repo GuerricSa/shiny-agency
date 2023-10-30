@@ -2,7 +2,12 @@
   "name": "shiny-agency",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-transform-runtime": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -17,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "node --experimental-vm-modules node_modules/react-scripts/scripts/test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
