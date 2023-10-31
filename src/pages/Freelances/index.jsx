@@ -15,6 +15,8 @@ const CardsContainer = styled.div`
   gap: 24px;
   grid-template-rows: 350px 350px;
   grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center
 `
 
 const Title = styled.h1`

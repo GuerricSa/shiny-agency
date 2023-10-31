@@ -25,6 +25,7 @@ font-size: 22px;
   height: 20%;
   padding-top: 15px;
   padding-left: 10px;
+  padding-bottom: 40px;
 `
 
 const FreelanceInfos = styled.div`
